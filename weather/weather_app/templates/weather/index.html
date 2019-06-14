@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .container{
+            width:30%;
+            margin: auto;
+        }
+        .box{
+            border: 1px solid lightgray;
+            border-radius: 12px;
+            background-color: #f4f4f4;
+            margin: 10px;
+            text-align: center;
+            font-family: 'Arial';
+        }
+        .box:hover{
+            cursor:pointer;
+            transition: .3s ease;
+            border-color: gray;
+            opacity: .8;
+        }
+        .input{
+            text-align: center;
+        }
+        .city-search{
+            opacity: .8;
+            width:90%;
+            padding: 20px 0px;
+            border: 1px solid lightgray;
+            border-radius: 12px;
+            background-color: #f4f4f4;
+            outline-color: white;
+            font-family: 'Arial';
+            font-size: 1.2em;
+            padding-left: 10px;
+        }
+        body{
+            background-image: url('https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/ym6fXsX/mostly-cloudy-skies-with-beautiful_nyb1vomx__F0000.png');
+            background-size: cover;
+            background-origin: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="input">
+            <input type="text" class="city-search" placeholder="Search city ...">
+        </div>
+        {% for city_weather in weather_data %}
+        <div class="box">
+            <img src="http://openweathermap.org/img/w/{{ city_weather.icon }}.png" alt="">
+            <p id="city-name">{{ city_weather.city }}</p>
+            <p id="city-temperature"> {{ city_weather.temperature }}°C</p>
+            <p id="city-description"> {{ city_weather.description }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
