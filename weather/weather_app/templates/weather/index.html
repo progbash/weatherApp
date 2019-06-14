@@ -3,36 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <style>
+</head>
+<style>
         .container{
-            width:30%;
+            width:35%;
             margin: auto;
         }
         .box{
             border: 1px solid lightgray;
             border-radius: 12px;
             background-color: #f4f4f4;
-            margin: 10px;
+            margin: 20px;
             text-align: center;
             font-family: 'Arial';
+            -webkit-box-shadow: 10px 10px 29px 0px rgba(0,0,0,0.73);
+            -moz-box-shadow: 10px 10px 29px 0px rgba(0,0,0,0.73);
+            box-shadow: 10px 10px 29px 0px rgba(0,0,0,0.73);
         }
         .box:hover{
             cursor:pointer;
             transition: .3s ease;
-            border-color: gray;
-            opacity: .8;
+            background-color: rgba(255,255,255,.5);
+            transform: scale(1.1);
         }
         .input{
+            display: flex;
             text-align: center;
         }
         .city-search{
-            opacity: .8;
+            background-color: rgba(255,255,255,.5);
             width:90%;
             padding: 20px 0px;
             border: 1px solid lightgray;
-            border-radius: 12px;
-            background-color: #f4f4f4;
-            outline-color: white;
+            border-radius: 12px 0px 0px 12px;
+            outline: none;
             font-family: 'Arial';
             font-size: 1.2em;
             padding-left: 10px;
@@ -40,15 +44,32 @@
         body{
             background-image: url('https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/ym6fXsX/mostly-cloudy-skies-with-beautiful_nyb1vomx__F0000.png');
             background-size: cover;
-            background-origin: center;
+
+        }
+
+        button{
+            border-radius: 0px 12px 12px 0px;
+            cursor:pointer;
+            opacity: .8;
+            border: 1px solid transparent;
+            background-color: #0082D4;
+            outline:none;
+            color:white;
+        }
+        button:hover{
+            background-color: #1C95E1;
+            transition: .3s ease;
         }
     </style>
-</head>
 <body>
     <div class="container">
-        <div class="input">
-            <input type="text" class="city-search" placeholder="Search city ...">
-        </div>
+        <form method="post">
+            {% csrf_token %}
+            <div class="input">
+                {{ form.name }}
+                <button type="submit">Add City</button>
+            </div>
+        </form>
         {% for city_weather in weather_data %}
         <div class="box">
             <img src="http://openweathermap.org/img/w/{{ city_weather.icon }}.png" alt="">
